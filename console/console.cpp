@@ -3,6 +3,7 @@
 #include "../../parser/inc/parser.hpp"
 #include "../../parser/datatypes/inc/abstract.hpp"
 #include "../../parser/datatypes/inc/string.hpp"
+#include "../../parser/datatypes/inc/atom.hpp"
 
 #include "console.hpp"
 
@@ -16,15 +17,12 @@ datatypes::AbstractDataType *out(husky::Parser *parser, datatypes::AbstractDataT
 {
     int i;
 
-    datatypes::AbstractDataType *retval; // trick with a compiler
-
-
     for (i = 0; i < len; i++)
     {
         parser->outhandler->print(arglist[i]->getStrValue());
     }
 
-    return retval;
+    return new datatypes::Atom(parser, "good");
 }
 
 

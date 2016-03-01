@@ -1,8 +1,8 @@
 #include <string>
 
-#include "../../src/parser/inc/parser.hpp"
-#include "../../src/parser/datatypes/inc/abstract.hpp"
-#include "../../src/parser/datatypes/inc/string.hpp"
+#include "../../parser/inc/parser.hpp"
+#include "../../parser/datatypes/inc/abstract.hpp"
+#include "../../parser/datatypes/inc/string.hpp"
 
 #include "console.hpp"
 

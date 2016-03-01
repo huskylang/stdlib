@@ -1,7 +1,7 @@
 #include <string>
 
-#include "../src/parser/inc/parser.hpp"
-#include "../src/parser/datatypes/inc/abstract.hpp"
+#include "../parser/inc/parser.hpp"
+#include "../parser/datatypes/inc/abstract.hpp"
 #include "console/console.hpp"
 
 #include "inc/router.hpp"

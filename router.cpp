@@ -2,7 +2,9 @@
 
 #include "../parser/inc/parser.hpp"
 #include "../parser/datatypes/inc/abstract.hpp"
+
 #include "console/console.hpp"
+#include "math/math.hpp"
 
 #include "inc/router.hpp"
 
@@ -26,6 +28,10 @@ datatypes::AbstractDataType *stdlib::run(
 
     if (modname == "cs") { // console module
         return stdlib::console::router(
+            parser, funexpr.substr(delimiter + 1, funexpr.length()), modname, arglist, len
+        );
+    } else if (modname == "math") {
+        return stdlib::math::router(
             parser, funexpr.substr(delimiter + 1, funexpr.length()), modname, arglist, len
         );
     } else {

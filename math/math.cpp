@@ -22,9 +22,8 @@ datatypes::AbstractDataType *stdlib::math::router(
 
     if (funname == "pow") { // pow function
         if (len != 2) {
-            parser->outhandler->error(
-                "(stdlib, math, pow)", "in module '" + modname + "'" + "no match for pow/" + std::to_string(len),
-                parser->line, parser->linen, parser->linei
+            parser->error(
+                "(stdlib, math, pow)", "in module '" + modname + "'" + "no match for pow/" + std::to_string(len)
             );
         }
 
@@ -33,9 +32,8 @@ datatypes::AbstractDataType *stdlib::math::router(
     } else {
         // throw function not found error
 
-        parser->outhandler->error(
-            "(stdlib, module finder)", "function '" + funname + "' not found in module '" + modname + "'",
-            parser->line, parser->linen, parser->linei
+        parser->error(
+            "(stdlib, module finder)", "function '" + funname + "' not found in module '" + modname + "'"
         );
 
         return retval;

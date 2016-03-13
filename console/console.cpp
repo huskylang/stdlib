@@ -70,9 +70,8 @@ datatypes::AbstractDataType *stdlib::console::router(
     } else {
         // throw function not found error
 
-        parser->outhandler->error(
-            "(stdlib, module finder)", "function '" + funname + "' not found in module '" + modname + "'",
-            parser->line, parser->linen, parser->linei
+        parser->error(
+            "(stdlib, module finder)", "function '" + funname + "' not found in module '" + modname + "'"
         );
 
         return retval;

@@ -37,9 +37,8 @@ datatypes::AbstractDataType *stdlib::run(
     } else {
         // throw module not found error
 
-        parser->outhandler->error(
-            "(stdlib, module finder)", "module '" + modname + "' not found",
-            parser->line, parser->linen, parser->linei
+        parser->error(
+            "(stdlib, module finder)", "module '" + modname + "' not found"
         );
 
         return retval;

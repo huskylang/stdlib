@@ -1,41 +1,33 @@
 #include <string>
 
 #include "../../parser/inc/parser.hpp"
+
 #include "../../parser/datatypes/inc/abstract.hpp"
 #include "../../parser/datatypes/inc/number.hpp"
+#include "../../parser/datatypes/inc/atom.hpp"
 
 #include "math.hpp"
 #include <cmath>
 
-using namespace husky;
+using namespace husky::stdlib::math;
 
 /*
- * Router for console module
+ * Raises number to power
  *
  */
-datatypes::AbstractDataType *stdlib::math::router(
-    husky::Parser *parser, std::string funname, std::string modname, \
-    datatypes::AbstractDataType **arglist, int len
+husky::datatypes::AbstractDataType *Pow::run(
+    husky::Parser *parser,
+    husky::datatypes::AbstractDataType **arglist,
+    int len
 )
 {
-    datatypes::AbstractDataType *retval; // trick with a compiler
-
-    if (funname == "pow") { // pow function
-        if (len != 2) {
-            parser->error(
-                "(stdlib, math, pow)", "in module '" + modname + "'" + "no match for pow/" + std::to_string(len)
-            );
-        }
-
-
-        return new datatypes::Number(parser, pow(arglist[0]->getIntValue(), arglist[1]->getIntValue()));
-    } else {
-        // throw function not found error
-
-        parser->error(
-            "(stdlib, module finder)", "function '" + funname + "' not found in module '" + modname + "'"
-        );
-
-        return retval;
+    if (len != 2) {
+        parser->error("(module manager)", "pow/2 takes 2 arguments");
+        return new datatypes::Atom(parser, "bad");
     }
+
+    return new datatypes::Number(
+        parser,
+        pow(arglist[0]->getIntValue(), arglist[1]->getIntValue())
+    );
 }

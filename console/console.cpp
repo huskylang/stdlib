@@ -1,19 +1,20 @@
 #include <string>
 
 #include "../../parser/inc/parser.hpp"
+
 #include "../../parser/datatypes/inc/abstract.hpp"
 #include "../../parser/datatypes/inc/string.hpp"
 #include "../../parser/datatypes/inc/atom.hpp"
 
 #include "console.hpp"
 
-using namespace husky;
+using namespace husky::stdlib::console;
 
 /*
  * Prints the args to the stdout
  *
  */
-datatypes::AbstractDataType *out(husky::Parser *parser, datatypes::AbstractDataType **arglist, int len)
+husky::datatypes::AbstractDataType *Out::run(husky::Parser *parser, husky::datatypes::AbstractDataType **arglist, int len)
 {
     int i;
 
@@ -22,7 +23,7 @@ datatypes::AbstractDataType *out(husky::Parser *parser, datatypes::AbstractDataT
         parser->outhandler->print(arglist[i]->getStrValue());
     }
 
-    return new datatypes::Atom(parser, "good");
+    return new husky::datatypes::Atom(parser, "good");
 }
 
 
@@ -30,13 +31,18 @@ datatypes::AbstractDataType *out(husky::Parser *parser, datatypes::AbstractDataT
  * Prints args with the endline character to the stdout
  *
  */
-datatypes::AbstractDataType *outl(husky::Parser *parser, datatypes::AbstractDataType **arglist, int len)
+husky::datatypes::AbstractDataType *Outl::run(husky::Parser *parser, husky::datatypes::AbstractDataType **arglist, int len)
 {
-    datatypes::AbstractDataType *retval = out(parser, arglist, len);
+    int i;
+
+    for (i = 0; i < len; i++)
+    {
+        parser->outhandler->print(arglist[i]->getStrValue());
+    }
 
     parser->outhandler->printline("");
 
-    return retval;
+    return new husky::datatypes::Atom(parser, "good");;
 }
 
 /*
@@ -45,35 +51,7 @@ datatypes::AbstractDataType *outl(husky::Parser *parser, datatypes::AbstractData
  * @returns String datatype
  *
  */
-datatypes::AbstractDataType *inl(husky::Parser *parser, datatypes::AbstractDataType **arglist, int len)
+husky::datatypes::AbstractDataType *Inl::run(husky::Parser *parser, husky::datatypes::AbstractDataType **arglist, int len)
 {
-    return new datatypes::String(parser, parser->inhandler->getLine());
-}
-
-/*
- * Router for console module
- *
- */
-datatypes::AbstractDataType *stdlib::console::router(
-    husky::Parser *parser, std::string funname, std::string modname, \
-    datatypes::AbstractDataType **arglist, int len
-)
-{
-    datatypes::AbstractDataType *retval; // trick with a compiler
-
-    if (funname == "out") { // out function
-        return out(parser, arglist, len);
-    } else if (funname == "outl") {
-        return outl(parser, arglist, len);
-    } else if (funname == "inl") {
-        return inl(parser, arglist, len);
-    } else {
-        // throw function not found error
-
-        parser->error(
-            "(stdlib, module finder)", "function '" + funname + "' not found in module '" + modname + "'"
-        );
-
-        return retval;
-    }
+    return new husky::datatypes::String(parser, parser->inhandler->getLine());
 }

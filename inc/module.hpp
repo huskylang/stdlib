@@ -3,7 +3,7 @@
 
 #include "module_function.hpp"
 
-namespace lib {
+ namespace husky { namespace lib {
 
     class Module
     {
@@ -13,6 +13,6 @@ namespace lib {
             virtual std::string getName() = 0;
     };
 
-}
+}}
 
 #endif

@@ -11,28 +11,28 @@
 
 namespace husky { namespace stdlib { namespace math {
 
-    class Pow : public lib::ModFunction
+    class Pow : public husky::lib::ModFunction
     {
         public:
             virtual husky::datatypes::AbstractDataType *run(husky::Parser *parser, husky::datatypes::AbstractDataType **arglist, int len);
             virtual std::string getName() { return "pow"; };
     };
 
-    class Math : public lib::Module
+    class Math : public husky::lib::Module
     {
         private:
-            lib::ModFunction **funs;
+            husky::lib::ModFunction **funs;
             int funs_len = 1;
 
         public:
             Math() {
-                this->funs = (lib::ModFunction**) malloc(sizeof(lib::ModFunction) * this->funs_len);
+                this->funs = (husky::lib::ModFunction**) malloc(sizeof(husky::lib::ModFunction) * this->funs_len);
 
                 this->funs[0] = new Pow();
             };
 
             virtual std::string getName() { return "math"; };
-            virtual lib::ModFunction **getFuns() { return (lib::ModFunction**) this->funs; };
+            virtual husky::lib::ModFunction **getFuns() { return (husky::lib::ModFunction**) this->funs; };
 
             virtual int getFunsLen() { return this->funs_len; };
     };

@@ -11,7 +11,7 @@
  *
  */
 
- namespace lib {
+ namespace husky { namespace lib {
 
     class ModFunction
     {
@@ -22,6 +22,6 @@
             // virtual bool checkArgs(AbstractDataType **) { return true; };
     };
 
-}
+}}
 
 #endif
